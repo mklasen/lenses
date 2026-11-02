@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lenses — the Perspective Room</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="./">Lenses<b>.</b></a>
+    <nav>
+      <a href="./">Lens Viewer</a>
+      <a href="room" aria-current="page">Perspective Room</a>
+    </nav>
+    <span class="tag">Same room. Seven worlds.</span>
+  </header>
+
+  <main class="layout">
+    <section>
+      <div class="stage" id="stage">
+        <div class="layers" id="layers"></div>
+        <div class="fx"><div class="mosaic" id="fx-mosaic"></div></div>
+        <article class="card" id="card" aria-live="polite"></article>
+      </div>
+      <section class="meaning-strip">
+        <h3>What things mean to <span id="mname">you</span></h3>
+        <dl class="objs" id="meaning"></dl>
+      </section>
+    </section>
+
+    <aside class="panel">
+      <h1>Step into someone else.</h1>
+      <p class="intro">One rainy evening, one living room. What each of them sees depends on their eyes — and what it <em>means</em> depends on what they know about how the world works. Adult, child, animal: the same room, understood differently.</p>
+      <div class="row">
+        <small>Perspectives</small>
+        <label class="switch"><input type="checkbox" id="eyes" checked> Simulate their eyes</label>
+      </div>
+      <ul class="lenses" id="plist"></ul>
+      <p class="foot"><b>Keys</b> 1–7 perspective · ←/→ next · e toggle eyes<br>Eye simulations are approximations: dogs and cats see mostly blues and yellows and less sharply; an 8-month-old's vision is still maturing; a fly's compound eye is a coarse but very fast mosaic.</p>
+    </aside>
+  </main>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="dichromat" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0.367 0.861 -0.228 0 0  0.280 0.673 0.047 0 0  -0.012 0.043 0.969 0 0  0 0 0 1 0"/>
+    </filter>
+  </svg>
+  <script type="module" src="js/room.js"></script>
+</body>
+</html>

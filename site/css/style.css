@@ -43,7 +43,7 @@ button { font: inherit; color: inherit; }
   position: relative; aspect-ratio: 16 / 9; width: 100%;
   border-radius: 14px; overflow: hidden; background: #000;
   box-shadow: 0 30px 80px rgba(0,0,0,.5);
-  --x: 50%; --y: 60%; --px: 50%; --py: 50%;
+  --x: 50%; --y: 60%; --rx: 5%; --ry: 19%; --px: 50%; --py: 50%;
   cursor: default;
 }
 .layers, .layers img, .fx, .fx > div { position: absolute; inset: 0; }
@@ -143,20 +143,20 @@ button { font: inherit; color: inherit; }
 .fx .bubble {
   background: radial-gradient(circle at var(--x) var(--y), transparent 0, rgba(225,228,232,.55) 30%, rgba(230,233,236,.88) 55%);
   backdrop-filter: blur(16px) saturate(.4); -webkit-backdrop-filter: blur(16px) saturate(.4);
-  -webkit-mask-image: radial-gradient(ellipse 9% 24% at var(--x) var(--y), transparent 60%, #000 100%);
-          mask-image: radial-gradient(ellipse 9% 24% at var(--x) var(--y), transparent 60%, #000 100%);
+  -webkit-mask-image: radial-gradient(ellipse calc(var(--rx) * 2) calc(var(--ry) * 1.25) at var(--x) var(--y), transparent 60%, #000 100%);
+          mask-image: radial-gradient(ellipse calc(var(--rx) * 2) calc(var(--ry) * 1.25) at var(--x) var(--y), transparent 60%, #000 100%);
 }
 /* Only me: everyone else becomes grey extras */
 .fx .self {
   backdrop-filter: grayscale(1) brightness(.6) contrast(.9); -webkit-backdrop-filter: grayscale(1) brightness(.6) contrast(.9);
-  -webkit-mask-image: radial-gradient(ellipse 4.5% 19% at var(--x) var(--y), transparent 70%, #000 100%);
-          mask-image: radial-gradient(ellipse 4.5% 19% at var(--x) var(--y), transparent 70%, #000 100%);
+  -webkit-mask-image: radial-gradient(ellipse var(--rx) var(--ry) at var(--x) var(--y), transparent 70%, #000 100%);
+          mask-image: radial-gradient(ellipse var(--rx) var(--ry) at var(--x) var(--y), transparent 70%, #000 100%);
 }
 /* scope: me / my people — circles of concern */
 .fx .scope0 {
   backdrop-filter: blur(7px) grayscale(.85) brightness(.45); -webkit-backdrop-filter: blur(7px) grayscale(.85) brightness(.45);
-  -webkit-mask-image: radial-gradient(ellipse 5% 19% at var(--x) var(--y), transparent 75%, #000 100%);
-          mask-image: radial-gradient(ellipse 5% 19% at var(--x) var(--y), transparent 75%, #000 100%);
+  -webkit-mask-image: radial-gradient(ellipse calc(var(--rx) * 1.1) var(--ry) at var(--x) var(--y), transparent 75%, #000 100%);
+          mask-image: radial-gradient(ellipse calc(var(--rx) * 1.1) var(--ry) at var(--x) var(--y), transparent 75%, #000 100%);
 }
 .fx .scope1 {
   backdrop-filter: blur(4px) grayscale(.6) brightness(.6); -webkit-backdrop-filter: blur(4px) grayscale(.6) brightness(.6);
@@ -175,7 +175,7 @@ button { font: inherit; color: inherit; }
 .stage.hurry-on .clock { opacity: 1; transform: none; }
 /* the "you" marker — a small pulse so people know who they are */
 .you {
-  position: absolute; left: var(--x); top: calc(var(--y) - 23%); transform: translate(-50%, -100%);
+  position: absolute; left: var(--x); top: calc(var(--y) - var(--ry) - 2%); transform: translate(-50%, -100%);
   font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #111; background: var(--accent);
   padding: 3px 8px; border-radius: 999px; opacity: 0; transition: opacity .6s; pointer-events: none;
 }
@@ -200,13 +200,25 @@ button { font: inherit; color: inherit; }
 .meaning.swap dd { opacity: 0; }
 .mosaic {
   background:
-    radial-gradient(circle at 50% 50%, transparent 0 46%, rgba(0,0,0,.55) 70%) 0 0 / 22px 19px,
-    radial-gradient(circle at 50% 50%, transparent 0 46%, rgba(0,0,0,.55) 70%) 11px 9.5px / 22px 19px;
+    radial-gradient(circle at 50% 50%, transparent 0 46%, rgba(0,0,0,.32) 72%) 0 0 / 18px 16px,
+    radial-gradient(circle at 50% 50%, transparent 0 46%, rgba(0,0,0,.32) 72%) 9px 8px / 18px 16px;
   mix-blend-mode: multiply;
 }
 .layers img.p-baby   { filter: blur(1.8px) saturate(1.15) brightness(1.05); }
 .layers img.p-grandpa{ filter: sepia(.2) contrast(.94) brightness(.98); }
 .layers img.p-dog    { filter: url(#dichromat) blur(1.1px) brightness(1.12); }
 .layers img.p-cat    { filter: url(#dichromat) blur(1.4px) brightness(1.4) contrast(.88); }
-.layers img.p-fly    { filter: blur(2.2px) saturate(1.4) hue-rotate(-12deg); }
+.layers img.p-fly    { filter: blur(1.3px) saturate(1.35) brightness(1.3) hue-rotate(-12deg); }
 .raw .layers img { filter: none !important; }
+
+/* meaning strip under the room stage */
+.meaning-strip { margin-top: 16px; }
+.meaning-strip h3 { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin: 0 0 10px; }
+.meaning-strip h3 span { color: var(--accent); }
+.objs { margin: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 1200px) { .objs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.obj { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: rgba(255,255,255,.025); }
+.obj dt { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+.obj dd { margin: 0; font-family: var(--serif); font-size: 15px; line-height: 1.35; transition: opacity .3s, transform .3s; }
+.objs.swap dd { opacity: 0; transform: translateY(4px); }
+.panel .intro em { color: var(--ink); }

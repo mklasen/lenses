@@ -107,6 +107,8 @@ function render(forceMode) {
   const s = scene();
   stage.style.setProperty("--x", `${s.you[0]}%`);
   stage.style.setProperty("--y", `${s.you[1]}%`);
+  stage.style.setProperty("--rx", `${s.r[0]}%`);
+  stage.style.setProperty("--ry", `${s.r[1]}%`);
   const active = state.active.map(id => byId[id]);
 
   // image: the most recent image lens wins

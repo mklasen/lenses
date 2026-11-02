@@ -1,8 +1,8 @@
 // Content for the Lens Viewer. Text values may be a string or { default, square, office, shore }.
 export const SCENES = [
-  { id: "square", name: "Town square", you: [49.5, 64] },
-  { id: "office", name: "Office",      you: [50.5, 63] },
-  { id: "shore",  name: "Promenade",   you: [48.5, 66] },
+  { id: "square", name: "Town square", you: [49.5, 67], r: [4.6, 20] },
+  { id: "office", name: "Office",      you: [50.5, 62], r: [9, 19] },
+  { id: "shore",  name: "Promenade",   you: [48.5, 66], r: [5.2, 21] },
 ];
 
 // kind: "image" → swaps the picture (only one active at a time)
