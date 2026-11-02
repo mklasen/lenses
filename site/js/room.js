@@ -1,4 +1,4 @@
-import { setImage, setCard, preload, esc } from "./stage.js";
+import { setImage, setCard, preload, esc, textToggle, centerActive } from "./stage.js";
 
 // perceive: how much raw sensory detail they take in · interpret: how much human meaning they can read
 const P = [
@@ -107,7 +107,9 @@ function go(id) {
   }, first ? 0 : 300);
   $("#mname").textContent = p.id === "you" ? "you" : p.name.replace(/^The /, "the ").replace(/^A /, "a ");
   for (const b of list.querySelectorAll(".lens")) b.setAttribute("aria-pressed", b.dataset.id === id);
+  centerActive(list);
 }
 
 P.forEach(p => preload(`assets/room/${p.id}.jpg`));
 go("you");
+textToggle(stage);

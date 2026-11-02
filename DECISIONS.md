@@ -52,6 +52,17 @@
 - Effects are `backdrop-filter` overlays with radial `mask-image` holes, positioned by CSS vars
   (`--x/--y/--rx/--ry` per scene, `--px/--py` pointer). Cheap, instant, stackable.
 
+## UI / mobile (2026-11-02)
+- **Phones (≤760px):** the image is full-bleed and *sticky* at the top, with a sticky, swipeable row of lens chips
+  pinned under it, so tapping a lens always shows its effect. The explanation card, scenes and intro flow below.
+  Done with `display: contents` on the column wrappers + flex `order`, so it's the same markup as desktop.
+  The card lives outside `.stage` for this reason (absolute over the image on desktop, static on phones).
+- **Desktop:** the stage is capped to the window height (`(100svh − 200px) × 16/9`) so dials never fall off-screen;
+  "Hide text" (h) fades the card to see the whole picture.
+- Self-hosted open fonts (Newsreader + Inter, OFL, `site/fonts/`), favicon, OG/meta, focus rings, reduced-motion.
+- Tunnel vision follows a finger too (pointerdown + `touch-action: none` while on).
+- Published on GitHub Pages (`.github/workflows/pages.yml` deploys `site/` on push to main).
+
 ## Next ideas
 - Lens ideas not yet built: scarcity vs abundance; "their screen" (what the person next to you is
   scrolling); a nature lens (the square as a habitat — pigeons, trees, insects).
@@ -59,4 +70,3 @@
 - Narration/audio per lens; ambient sound that changes with perspective (muffled for the baby,
   ultra-detailed for the dog).
 - A guided "walk" mode that sequences lenses as a 2-minute story.
-- Mobile layout polish (works, but card overlays move below the image on small screens).

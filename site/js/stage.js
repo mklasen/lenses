@@ -56,3 +56,20 @@ export function setCard(card, html) {
 }
 
 export const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+// "Hide text" toggle: lets people see the whole picture without the card (button or h key)
+export function textToggle(stage) {
+  const btn = document.getElementById("text-toggle");
+  const host = stage.closest(".main");
+  const set = off => { host.classList.toggle("text-off", off); btn.setAttribute("aria-pressed", off); };
+  btn.addEventListener("click", () => set(!host.classList.contains("text-off")));
+  document.addEventListener("keydown", e => { if (e.key === "h" && !e.metaKey && !e.ctrlKey) set(!host.classList.contains("text-off")); });
+}
+
+// keep the active item of a horizontally scrolling row in view (phones) without moving the page
+export function centerActive(row, smooth = true) {
+  const el = row?.querySelector('[aria-pressed="true"]');
+  if (!el || row.scrollWidth <= row.clientWidth) return;
+  const left = el.offsetLeft - (row.clientWidth - el.offsetWidth) / 2;
+  row.scrollTo({ left, behavior: smooth ? "smooth" : "instant" });
+}

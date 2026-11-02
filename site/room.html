@@ -4,25 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lenses — the Perspective Room</title>
+  <meta name="theme-color" content="#0d0e11">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/newsreader-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="description" content="One living room, seven perspectives — a baby, a dog, a fly and the rest of the family. An interactive experience about perception.">
+  <meta property="og:title" content="Lenses">
+  <meta property="og:description" content="One living room, seven perspectives — a baby, a dog, a fly and the rest of the family. An interactive experience about perception.">
+  <meta property="og:image" content="assets/scenes/square/wonder.jpg">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="top">
     <a class="brand" href="./">Lenses<b>.</b></a>
     <nav>
-      <a href="./">Lens Viewer</a>
-      <a href="room.html" aria-current="page">Perspective Room</a>
+      <a href="./"><span>Lens </span>Viewer</a>
+      <a href="room.html" aria-current="page"><span>Perspective </span>Room</a>
     </nav>
     <span class="tag">Same room. Seven worlds.</span>
   </header>
 
   <main class="layout">
-    <section>
+    <section class="main">
       <div class="stage" id="stage">
         <div class="layers" id="layers"></div>
         <div class="fx"><div class="mosaic" id="fx-mosaic"></div></div>
-        <article class="card" id="card" aria-live="polite"></article>
+        <button class="text-toggle" id="text-toggle" type="button" aria-pressed="false" title="Hide the text (h)"><span class="on-lbl">Hide text</span><span class="off-lbl">Show text</span></button>
       </div>
+      <article class="card" id="card" aria-live="polite"></article>
       <section class="meaning-strip">
         <h3>What things mean to <span id="mname">you</span></h3>
         <dl class="objs" id="meaning"></dl>
@@ -37,7 +47,7 @@
         <label class="switch"><input type="checkbox" id="eyes" checked> Simulate their eyes</label>
       </div>
       <ul class="lenses" id="plist"></ul>
-      <p class="foot"><b>Keys</b> 1–7 perspective · ←/→ next · e toggle eyes<br>Eye simulations are approximations: dogs and cats see mostly blues and yellows and less sharply; an 8-month-old's vision is still maturing; a fly's compound eye is a coarse but very fast mosaic.</p>
+      <p class="foot"><span class="keys"><b>Keys</b> 1–7 perspective · ←/→ next · e toggle eyes · h hide text<br></span>Eye simulations are approximations: dogs and cats see mostly blues and yellows and less sharply; an 8-month-old's vision is still maturing; a fly's compound eye is a coarse but very fast mosaic.</p>
     </aside>
   </main>
 

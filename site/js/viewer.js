@@ -1,5 +1,5 @@
 import { SCENES, LENSES, NAKED } from "./lenses.js";
-import { setImage, setCard, preload, esc } from "./stage.js";
+import { setImage, setCard, preload, esc, textToggle, centerActive } from "./stage.js";
 
 const $ = s => document.querySelector(s);
 const stage = $("#stage"), layers = $("#layers"), card = $("#card"), dials = $("#dials");
@@ -56,14 +56,17 @@ dials.addEventListener("click", e => {
 });
 
 // tunnel vision follows the pointer
-stage.addEventListener("pointermove", e => {
+const aim = e => {
   const r = stage.getBoundingClientRect();
   stage.style.setProperty("--px", `${((e.clientX - r.left) / r.width) * 100}%`);
   stage.style.setProperty("--py", `${((e.clientY - r.top) / r.height) * 100}%`);
-});
+};
+stage.addEventListener("pointermove", aim);
+stage.addEventListener("pointerdown", aim);
+if (matchMedia("(hover: none)").matches) hint.textContent = "Tap a lens below";
 
 document.addEventListener("keydown", e => {
-  if (e.target.closest("input, textarea")) return;
+  if (e.target.closest?.("input, textarea")) return;
   const l = LENSES.find(l => l.key === e.key);
   if (l) return toggle(l.id);
   if (e.key === "0" || e.key === "Escape") { state.active = []; return render(); }
@@ -158,6 +161,8 @@ function render(forceMode) {
   // controls
   for (const b of list.querySelectorAll(".lens")) b.setAttribute("aria-pressed", state.active.includes(b.dataset.id));
   for (const b of scenesNav.querySelectorAll("[data-scene]")) b.setAttribute("aria-pressed", b.dataset.scene === state.scene);
+  dials.querySelectorAll(".dial").forEach(d => centerActive(d, false));
+  centerActive(list);
 }
 
 // "you" marker flashes on load / scene change so people know who they are
@@ -193,3 +198,4 @@ function warm() {
 flashYou();
 render();
 warm();
+textToggle(stage);
