@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lenses — the Lens Viewer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="./">Lenses<b>.</b></a>
+    <nav>
+      <a href="./" aria-current="page">Lens Viewer</a>
+      <a href="room">Perspective Room</a>
+    </nav>
+    <span class="tag">Same world. Different lens.</span>
+  </header>
+
+  <main class="layout">
+    <section>
+      <div class="stage" id="stage">
+        <div class="layers" id="layers"></div>
+        <div class="fx" id="fx">
+          <div class="scope0" data-fx="scope0"></div>
+          <div class="scope1" data-fx="scope1"></div>
+          <div class="self" data-fx="self"></div>
+          <div class="bubble" data-fx="bubble"></div>
+          <div class="hurry" data-fx="hurry"></div>
+          <div class="tunnel" data-fx="tunnel"></div>
+        </div>
+        <div class="you">you</div>
+        <div class="clock" id="clock"></div>
+        <article class="card" id="card" aria-live="polite"></article>
+        <div class="dials" id="dials"></div>
+        <div class="hint" id="hint">Pick a lens → or press 1–8</div>
+      </div>
+      <nav class="scenes" id="scenes"><span class="lbl">Scene</span></nav>
+    </section>
+
+    <aside class="panel">
+      <h1>Swap a lens.</h1>
+      <p class="intro">The scene doesn't change. What you notice — and what it means — does. The figure in mustard yellow is you.</p>
+      <div class="row">
+        <small>Lenses</small>
+        <label class="switch"><input type="checkbox" id="stack"> Stack lenses</label>
+      </div>
+      <ul class="lenses" id="lenslist"></ul>
+      <p class="foot"><b>Keys</b> 1–8 lens · ←/→ move a dial · [ ] scene · s stack · 0 clear</p>
+    </aside>
+  </main>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="smear" x="-5%" y="0" width="110%" height="100%"><feGaussianBlur stdDeviation="14 0"/></filter>
+    <!-- dichromat (approx. dog / cat colour vision: blue–yellow world, reds collapse) -->
+    <filter id="dichromat" color-interpolation-filters="linearRGB">
+      <feColorMatrix type="matrix" values="0.625 0.375 0 0 0  0.7 0.3 0 0 0  0 0.3 0.7 0 0  0 0 0 1 0"/>
+    </filter>
+  </svg>
+  <script type="module" src="js/viewer.js"></script>
+</body>
+</html>
