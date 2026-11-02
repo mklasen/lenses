@@ -16,6 +16,10 @@
   ],
   "activity": [
     {
+      "at": "2026-11-02T15:35:42.491Z",
+      "text": "Published to GitHub Pages: https://mklasen.github.io/lenses/ (repo mklasen/lenses, auto-deploys site/ on push to main)"
+    },
+    {
       "at": "2026-11-02T07:50:13.404Z",
       "text": "Shipped Lens Viewer + Perspective Room, tested in browser"
     }
@@ -25,5 +29,5 @@
   "summary": "Lens Viewer: 3 scenes × 8 lenses (circle-of-concern powers-of-ten zoom, time horizon 1925→12,000, threat/wonder, tunnel, bubble, only-me, hurry; stackable). Perspective Room: 7 POVs (you, baby, mum, grandpa, dog, cat, fly) with eye simulations and a 'what things mean' strip.",
   "next": "Feedback round; ideas: guided walk mode, room hotspots, ambient audio, more lenses",
   "url": "https://lenses.helios.users.ctx7.dev",
-  "updated": "2026-11-02T07:50:13.404Z"
+  "updated": "2026-11-02T15:35:42.491Z"
 }
